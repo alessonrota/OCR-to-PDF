@@ -1,34 +1,57 @@
-# OCR-to-PDF
-Código composto com Tesseract e PyPDF para reconhecimento de imagens e conversão em documentos .pdf
+Preparação do Ambiente
 
+    Instalação das Bibliotecas Necessárias:
+        Você precisa ter Python instalado em seu sistema.
+        Instale as bibliotecas necessárias usando pip:
 
-1 - Crie um diretório de trabalho para o projeto:
+pip install PyPDF2 numpy pytesseract
 
-    Crie um novo diretório em seu sistema operacional para o projeto de conversão de imagens JPG em PDF.
-    Por exemplo, crie um diretório chamado "conversor-pdf" no desktop.
+    Instale o Tesseract OCR. Você pode baixá-lo aqui. Lembre-se de adicionar o caminho do Tesseract ao seu PATH ou especificar o caminho diretamente no seu script, como no seu código.
 
-2 - Adicione as imagens JPG ao diretório:
+Configuração do Tesseract:
 
-    Copie as imagens JPG que deseja converter para PDF para o diretório de trabalho que você criou no passo anterior.
+    No código, você definiu o caminho para o executável do Tesseract. Certifique-se de que este caminho esteja correto para o seu sistema.
 
-3 - Abra o terminal:
+tesseract.pytesseract.tesseract_cmd = r"C:/Program Files/Tesseract-OCR/tesseract.exe"
 
-    Abra o terminal (no Windows, use o PowerShell) e navegue até o diretório de trabalho que você criou no passo anterior.
+Entendendo o Código
 
-4 - Inicie o ambiente virtual:
+    Importação das Bibliotecas:
+        O código começa importando todas as bibliotecas necessárias.
 
-    Execute o seguinte comando para iniciar o ambiente virtual:
-  `python -m venv venv`
+    Definição do Diretório de Entrada:
+        files0 = os.listdir("D:/Banco de dados/entrada/"): Aqui, você define o diretório que contém os arquivos a serem processados.
 
-    Isso criará um novo diretório chamado "venv" no diretório de trabalho que você criou. O ambiente virtual é uma forma de isolar as dependências do projeto em um ambiente separado para evitar conflitos com outras bibliotecas do Python.
+    Preparação para o Processamento:
+        O código então prepara variáveis para o loop de processamento, como contadores e uma lista para armazenar os caminhos dos arquivos.
 
-5 - Ative o ambiente virtual:
+    Loop Principal:
+        Este é o loop que processa cada arquivo no diretório. Ele imprime informações sobre o progresso e processa cada diretório/arquivo um por um.
 
-    Execute o seguinte comando para ativar o ambiente virtual:
-    `source venv/bin/activate`
-    Isso ativará o ambiente virtual e o prompt do terminal deve mudar para indicar que o ambiente virtual está ativo.
+    Selecionando e Processando Imagens:
+        Dentro do loop, há outro loop que passa por cada arquivo no diretório atual, selecionando apenas arquivos .jpg. Cada imagem encontrada é adicionada a uma lista.
 
-6 - Instale as dependências necessárias:
+    Criação de um Arquivo PDF:
+        Para cada imagem, o código utiliza o pytesseract para convertê-la em PDF e então adiciona essa página a um objeto PdfFileWriter.
 
-    Execute o seguinte comando para instalar as dependências necessárias para o projeto:
-    `pip install PyPDF2 numpy pytesseract`
+    Salvando o Arquivo PDF:
+        Após processar todas as imagens em um diretório, o código salva o PDF resultante no sistema de arquivos.
+
+    Atualização dos Contadores e Finalização:
+
+    Os contadores são atualizados para passar para o próximo arquivo, e o processo continua até que todos os arquivos sejam processados.
+
+Executando o Código
+
+    Execute o Script:
+
+    Execute o script Python no seu ambiente. Certifique-se de que o diretório de entrada (D:/Banco de dados/entrada/) contenha os diretórios/arquivos que você deseja processar.
+    O script criará um arquivo PDF para cada diretório, contendo as imagens convertidas.
+
+Observações
+
+    Verifique os Caminhos: Garanta que os caminhos do diretório e do Tesseract estejam corretos para o seu sistema.
+    Teste com um Diretório Pequeno Primeiro: Para garantir que tudo está funcionando, você pode querer começar com um diretório pequeno.
+    Erros e Correções: Se encontrar erros, verifique os caminhos, as permissões dos arquivos e se todas as dependências estão instaladas corretamente.
+
+    
